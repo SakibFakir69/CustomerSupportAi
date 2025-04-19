@@ -3,16 +3,23 @@ import React from "react";
 function Banner() {
   return (
     <div className=" w-full relative">
-      <div className="absolute flex justify-end border  right-0">
+
+      {/* <div className="absolute flex justify-end border  right-0">
         <img
           src="Elements.png"
-          className="md:max-h-[550px] md:mt-10 sm:max-h-[300px] mt-40"
+          className="lg:max-h-[550px] lg:mt-10 md:max-h-[300px] sm:max-h-[250px]  md:mt-6"
+        />
+      </div> */}
+        <div className="absolute flex justify-end right-0 top-0">
+        <img
+          src="Elements.png"
+          className="max-w-full lg:max-h-[550px] lg:mt-10 md:max-h-[300px] sm:max-h-[200px] md:mt-16 mt-48"
         />
       </div>
 
       <section className="p-10 flex justify-center items-center">
         <section className="flex md:flex-row flex-col items-center">
-          <div className="flex   justify-start  flex-col ">
+          <div className="flex   justify-start  flex-col gap-4 ">
             <div>
               <p>
                 <button className="btn">New</button>Latest integration just
@@ -41,7 +48,7 @@ function Banner() {
 
               <div className="border flex justify-center ">
                 {/* img */}
-                <div className="lg:h-60 md:h-52 md:w-52  lg:w-60 bg-white blur-2xl absolute mt-20 "></div>
+                <div className="lg:h-60 md:h-40 md:w-42  lg:w-60 bg-white blur-2xl absolute mt-20 "></div>
 
                 <img src="AI Model.png" className="z-50" />
               </div>
