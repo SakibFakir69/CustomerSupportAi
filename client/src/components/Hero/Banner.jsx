@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 function Banner() {
   return (
     <div className=" w-full relative">
@@ -20,9 +22,12 @@ function Banner() {
       <section className="p-10 flex justify-center items-center">
         <section className="flex md:flex-row flex-col items-center">
           <div className="flex   justify-start  flex-col gap-4 ">
-            <div>
-              <p>
-                <button className="btn">New</button>Latest integration just
+
+            <div className="  ">
+
+              <p className="p-0.5 w-72 flex  justify-center gap-4 items-center bg-black rounded-full border  border-teal-400/40 ">
+
+                <span className="border p-1 rounded-2xl bg-white text-black font-semibold ">New</span>Latest integration just
                 arrived
               </p>
             </div>
@@ -30,27 +35,28 @@ function Banner() {
             <h2 className="text-white md:text-6xl font-bold text-4xl ">
               Revolutionize Your Workflow with AI
             </h2>
-            <p>
+            <p className="max-h-48 opacity-90">
               Experience cutting-edge solutions designed to elevate productivity
               and deliver results like never before.
             </p>
 
             <div>
-              <button className="btn btn-accent px-10 py-2.5">
+              <Link to={'/chat'} className="  px-10 py-2.5 hover:bg-teal-400/20 rounded font-semibold bg-teal-200/20 cursor-pointer ">
                 Get Started
-              </button>
+              </Link>
             </div>
+
           </div>
 
           <section>
-            <div className="border">
+            <div className="">
               {/* img */}
 
-              <div className="border flex justify-center ">
+              <div className=" flex justify-center ">
                 {/* img */}
                 <div className="lg:h-60 md:h-40 md:w-42  lg:w-60 bg-white blur-2xl absolute mt-20 "></div>
 
-                <img src="AI Model.png" className="z-50" />
+                <img src="AI Model.png" className="z-40" />
               </div>
 
             

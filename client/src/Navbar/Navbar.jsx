@@ -1,19 +1,25 @@
+
+
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar() {
 
     const links = <>
     <li>
-        <a>Home</a>
+    <NavLink to={'/'}>Home</NavLink>
     </li>
     <li>
-        <a>Chat</a>
+       <NavLink  to={'/chat'}>Chat</NavLink>
     </li>
     <li>
         <a>Service</a>
     </li>
     <li>
         <a>Blog</a>
+    </li>
+    <li>
+        <a>Compnay</a>
     </li>
 
 
@@ -22,8 +28,8 @@ function Navbar() {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="navbar-start">
+      <div className="navbar  shadow-sm w-full border border-teal-400/20 z-50 fixed backdrop-blur-3xl bg-transparent" >
+        <div className="navbar-start  ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -44,15 +50,15 @@ function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold"
             >
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">csAI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 font-semibold">
             {links}
           </ul>
         </div>

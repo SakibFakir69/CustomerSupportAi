@@ -48,10 +48,11 @@ const Ai = async (msg) => {
     const response = await openai.chat.completions.create({
         model: "gemini-2.0-flash",
         messages: [
-            { role: "system", content: "You are customer supporter." },
+            { role: "system", content: "You have access to the latest bKash services like mobile recharge, send money, pay bill, cash out, add money, etc. You know the current charges and processes for each." },
+
             {
                 role: "user",
-                content: `rice list manago tamoto , cini , eetc call price gave this ${msg}`
+                content: msg
             },
         ],
     });
@@ -99,9 +100,7 @@ run().catch(console.dir);
 
 app.post('/post', async (req, res) => {
 
-    // ai jaga 2 ta e pacci
-    // ai 2 ta akta collection send korata hobba then show korta hobba
-    // front-end a 
+    
 
     const { promt } = req.body;
     console.log(promt);
@@ -112,12 +111,13 @@ app.post('/post', async (req, res) => {
 
         {
             message: promt,
-            sender: "user",
+            sender: "User",
             timestamp: new Date()
         },
         {
             message: cleanReply,
-            sender: Ai,
+            sender: "Ai",
+            // here face problem
             timestamp: new Date()
         }
     ])
@@ -135,27 +135,6 @@ app.post('/post', async (req, res) => {
 
 
 
-// io.on('connection', (socket) => {
-
-
-//     const math = Math.floor(Math.random() * 10);
-
-//     socket.emit("welcome", math);
-
-
-
-
-
-
-//     socket.on('disconnect', () => {
-//         console.log(`${socket.id} disconnected`)
-//     })
-
-
-// })
-
-
-// mongo db
 
 
 

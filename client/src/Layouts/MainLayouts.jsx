@@ -1,16 +1,22 @@
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
-
-
-import React from 'react'
 
 function MainLayouts() {
   return (
-    <div>
+    <div className="color">
+        <nav>
+            <Navbar/>
+        </nav>
         
+        <Outlet/>
+        
+   
 
-
+     
     </div>
-  )
+  );
 }
 
-export default MainLayouts
+export default MainLayouts;

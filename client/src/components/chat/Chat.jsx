@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-
-
+import ReactMarkdown from "react-markdown";
 function Chat() {
 
   const [ msg , setmsg ] = useState([]);
@@ -29,8 +28,11 @@ function Chat() {
   console.log(msg);
 
   return (
-    <div>
-      <h2 className="text-center font-semibold mt-10">
+    <div className="min-h-screen">
+      <div className="py-20">
+
+      </div>
+      <h2 className="text-center font-semibold">
         Welcome to customer support{" "}
       </h2>
 
@@ -47,9 +49,16 @@ function Chat() {
         {
           msg.map((text,key)=>(
           
-            <div className="flex justify-between p-4" key={key}>
-                <p key={key} className="text-black bg-teal-200 p-2 md:max-w-2xl md:w-72 w-60 rounded">{text}</p>
+            <div className="flex justify-between p-4 " key={key}>
+
+             
+             <div  className="flex flex-col">
+             <ReactMarkdown>{text}</ReactMarkdown>
+             </div>
+            
+
                 <p className="bg-green-400 p-2 rounded mt-10">{inutRef.current?.value}</p>
+
             </div>
           ))
         }
