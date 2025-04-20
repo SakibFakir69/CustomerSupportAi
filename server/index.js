@@ -64,6 +64,44 @@ const Ai = async (msg) => {
 //  {ai : cleanreply , }
 // {me:msg}
 
+app.post('/post', async (req, res) => {
+
+    
+
+    const { promt } = req.body;
+    console.log(promt);
+    const reply = await Ai(promt);
+    // return reply here
+    const cleanReply = reply.content;
+
+    await messageCollection.insertMany([
+
+        {
+            message: promt,
+            sender: "User",
+            timestamp: new Date()
+        },
+        {
+            message: cleanReply,
+            sender: "Ai",
+            // here face problem
+            timestamp: new Date()
+        }
+    ])
+
+
+
+
+
+
+    res.json({ status: "success", reply: cleanReply });
+
+
+})
+
+
+
+
 let messageCollection;
 async function run() {
     try {
@@ -97,40 +135,6 @@ run().catch(console.dir);
 
 
 
-
-app.post('/post', async (req, res) => {
-
-    
-
-    const { promt } = req.body;
-    console.log(promt);
-    const reply = await Ai(promt);
-    const cleanReply = reply.content;
-
-    await messageCollection.insertMany([
-
-        {
-            message: promt,
-            sender: "User",
-            timestamp: new Date()
-        },
-        {
-            message: cleanReply,
-            sender: "Ai",
-            // here face problem
-            timestamp: new Date()
-        }
-    ])
-
-
-
-
-
-
-    res.json({ status: "success", reply: cleanReply });
-
-
-})
 
 
 
