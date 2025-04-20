@@ -8,11 +8,16 @@ import MainLayouts from './Layouts/MainLayouts.jsx'
 import Chat from './components/chat/Chat.jsx'
 import HomeLayouts from './components/home/HomeLayouts.jsx'
 
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
 // add ai based customer support
 // messaging
 // live location track
 
-
+const queryClient = new QueryClient()
 const route = createBrowserRouter([
   {
     path:'',
@@ -36,6 +41,9 @@ const route = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
-    <RouterProvider router={route}/>
+   <QueryClientProvider client={queryClient}>
+   <RouterProvider router={route}/>
+   </QueryClientProvider>
+
   </StrictMode>,
 )
