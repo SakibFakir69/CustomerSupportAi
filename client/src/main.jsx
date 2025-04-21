@@ -13,6 +13,10 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query'
+import ContextAPi from './provider/ContextAPi.jsx'
+import AuthenticationLayoutes from './authentication/AuthenticationLayoutes.jsx'
+import SignUp from './authentication/SignUp.jsx'
+import SignIn from './authentication/SignIn.jsx'
 // add ai based customer support
 // messaging
 // live location track
@@ -35,15 +39,35 @@ const route = createBrowserRouter([
      
     ]
   },
+  {
+    path:'authentication',
+    element: <AuthenticationLayoutes/>,
+    children:[
+      {
+        path:'signup',
+        element: <SignUp/>
+      },
+      {
+        path:'signin',
+        element: <SignIn/>
+      }
+    ]
+
+  }
+  // authentication
+
+
 
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
+   <ContextAPi>
    <QueryClientProvider client={queryClient}>
    <RouterProvider router={route}/>
    </QueryClientProvider>
+   </ContextAPi>
 
   </StrictMode>,
 )

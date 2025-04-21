@@ -7,13 +7,15 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const express = require('express');
 const cors = require('cors');
-
+const jwt= require("jsonwebtoken")
 
 
 // socket.io
 const OpenAI = require("openai");
 const port = 5000;
 const app = express();
+
+
 
 
 

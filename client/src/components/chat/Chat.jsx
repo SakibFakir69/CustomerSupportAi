@@ -23,6 +23,7 @@ function Chat() {
       const response = await axios.post(
         "https://chat-mocha-alpha.vercel.app/post",
         { promt }
+        // send email
       );
       return response.data;
     },
