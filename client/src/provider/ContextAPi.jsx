@@ -1,16 +1,17 @@
 
 
 
-import React, { Children, useState } from 'react'
+import React, { Children, useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { Auth } from '../firebase/config';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
 export const ContextApi = createContext();
 
 function ContextAPi({children}) {
 
-    const [ loading , setloading ]= useState(false);
+    const [ loading , setloading ]= useState(true);
+    const [ user , setuser ] = useState(null);
 
     const provider = new GoogleAuthProvider();
 
@@ -25,13 +26,27 @@ function ContextAPi({children}) {
 
     }
 
+    // sign out and sign in 
+
     
 
 
 
     const auth = {
-        loading,signUp ,signUpWithGoogle ,setloading
+        loading,signUp ,signUpWithGoogle ,setloading,user
     }
+
+
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(Auth,(currentUser)=>{
+            setuser(currentUser);
+            setloading(true);
+
+        })
+        setloading(false);
+
+        return ()=> unsubscribe();
+    })
 
 
   return (

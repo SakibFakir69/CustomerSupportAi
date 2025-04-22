@@ -1,34 +1,34 @@
-
-
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import UseAuth from "../hooks/UseAuth";
 
 function Navbar() {
+  const { user, loading } = UseAuth();
 
-    const links = <>
-    <li>
-    <NavLink to={'/'}>Home</NavLink>
-    </li>
-    <li>
-       <NavLink  to={'/chat'}>Chat</NavLink>
-    </li>
-    <li>
+
+  const links = (
+    <>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/chat"}>Chat</NavLink>
+      </li>
+      <li>
         <a>Service</a>
-    </li>
-    <li>
+      </li>
+      <li>
         <a>Blog</a>
-    </li>
-    <li>
+      </li>
+      <li>
         <a>Compnay</a>
-    </li>
-
-
+      </li>
     </>
-
+  );
 
   return (
     <div>
-      <div className="navbar  shadow-sm w-full border border-teal-400/20 z-50 fixed backdrop-blur-3xl bg-transparent" >
+      <div className="navbar  shadow-sm w-full border border-teal-400/20 z-50 fixed backdrop-blur-3xl bg-transparent">
         <div className="navbar-start  ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -58,12 +58,25 @@ function Navbar() {
           <a className="btn btn-ghost text-xl">csAI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 font-semibold">
-            {links}
-          </ul>
+          <ul className="menu menu-horizontal px-1 font-semibold">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Login</a>
+
+          {
+            user  ?  (<div>
+              <button className="btn btn-primary">Sign out</button>
+
+            </div>) :
+            (<div>
+              <button className="btn btn-active">Sign in </button>
+
+            </div>)
+          }
+
+
+          
+
+
         </div>
       </div>
     </div>
