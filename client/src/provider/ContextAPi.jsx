@@ -30,7 +30,7 @@ function ContextAPi({children}) {
 
 
     const auth = {
-        loading,signUp ,signUpWithGoogle 
+        loading,signUp ,signUpWithGoogle ,setloading
     }
 
 
