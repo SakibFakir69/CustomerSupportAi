@@ -2,7 +2,8 @@ import React from "react";
 import UseAuth from "../hooks/UseAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
-import { setLogLevel } from "firebase/app";
+
+import { ToastContainer, toast } from 'react-toastify';
 function SignUp() {
 
   const { signUp, signUpWithGoogle ,setloading} = UseAuth();
@@ -24,6 +25,7 @@ function SignUp() {
     signUp(email,password)
     .then((res)=>{
       console.log(res.data);
+      toast.success("Successfully Sign up")
       setloading(false);
       goHome('/');
     }).catch(err=>{
@@ -32,13 +34,34 @@ function SignUp() {
 
 
   }
-  
+  // sign up with google 
+
+  const handelGoogle = (event)=>{
+    event.preventDefault();
+    setloading(true);
+
+    signUpWithGoogle()
+    .then((res)=>{
+      console.log(res.data);
+      toast.success("Successfully Sign up")
+      goHome('/')
+      setloading(false);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
+
+
+
+  }
+
   
 
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen w-full flex flex-col justify-center items-center">
-
+             <ToastContainer/>
         <div className=" flex justify-center border p-8 m-4 border-white/20 flex-col  items-center">
           <form
             className=" p-2 flex space-y-3 flex-col "
@@ -48,7 +71,7 @@ function SignUp() {
               type="text"
               placeholder="Name"
               className="w-full px-10 py-2 border rounded border-white/30"
-              defaultValue="name" {...register("name",{required:true})}
+              defaultValue="" {...register("name",{required:true})}
             />
 
             <input
@@ -82,7 +105,7 @@ function SignUp() {
          <p className="text-center">or</p>
 
           <div className="flex justify-center">
-            <button className="btn  flex justify-center items-center">Sign in with google</button>
+            <button className="btn  flex justify-center items-center" onClick={handelGoogle}>Sign in with google</button>
           </div>
 
           <div className="flex justify-center">
