@@ -27,6 +27,11 @@ function ContextAPi({children}) {
     }
 
     // sign out and sign in 
+    // 4/23/25
+    const signOut = () =>{
+
+        return signOut(auth)
+    }
 
     
 
