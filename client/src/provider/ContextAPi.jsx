@@ -4,7 +4,7 @@
 import React, { Children, useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { Auth } from '../firebase/config';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 
 export const ContextApi = createContext();
 
@@ -30,9 +30,9 @@ function ContextAPi({children}) {
     // 4/23/25
 
     // sign out 
-    const signOut = () =>{
+    const signOutHandel = () =>{
 
-        return signOut(auth)
+        return signOut(Auth);
     }
     // sign in with email
 
@@ -41,7 +41,8 @@ function ContextAPi({children}) {
         return signInWithEmailAndPassword(auth,email,password);
     }
     // sign with google 
-    const signINWithGoole = ()=>{
+    const signInWithGoole = ()=>{
+
         return signInWithPopup(auth);
     }
 
@@ -50,7 +51,7 @@ function ContextAPi({children}) {
 
 
     const auth = {
-        loading,signUp ,signUpWithGoogle ,setloading,user
+        loading,signUp ,signUpWithGoogle ,setloading,user,signOutHandel,signIniWithEmailAndPassword ,signInWithGoole
     }
 
 

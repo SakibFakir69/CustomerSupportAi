@@ -1,9 +1,29 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import UseAuth from "../hooks/UseAuth";
+import {ToastContainer,toast} from "react-toastify"
 
 function Navbar() {
-  const { user, loading } = UseAuth();
+  const { user, setloading,signOutHandel,signIniWithEmailAndPassword ,signInWithGoole } = UseAuth();
+
+
+  const logOut = ()=>{
+
+    setloading(false);
+    
+
+    signOutHandel()
+    .then((res)=>{
+      setloading(true);
+      toast.success("Successfully Log out")
+
+    }).catch(error=>{
+      console.log(error);
+      toast.error(" Log out failed")
+    })
+    
+  }
+
 
 
   const links = (
@@ -28,6 +48,7 @@ function Navbar() {
 
   return (
     <div>
+      <ToastContainer/>
       <div className="navbar  shadow-sm w-full border border-teal-400/20 z-50 fixed backdrop-blur-3xl bg-transparent">
         <div className="navbar-start  ">
           <div className="dropdown">
@@ -64,7 +85,7 @@ function Navbar() {
 
           {
             user  ?  (<div>
-              <button className="btn btn-primary">Sign out</button>
+              <button className="btn btn-primary" onClick={logOut}>Sign out</button>
 
             </div>) :
             (<div>
