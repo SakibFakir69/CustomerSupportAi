@@ -28,9 +28,21 @@ function ContextAPi({children}) {
 
     // sign out and sign in 
     // 4/23/25
+
+    // sign out 
     const signOut = () =>{
 
         return signOut(auth)
+    }
+    // sign in with email
+
+    const signIniWithEmailAndPassword = (email,password)=>{
+
+        return signInWithEmailAndPassword(auth,email,password);
+    }
+    // sign with google 
+    const signINWithGoole = ()=>{
+        return signInWithPopup(auth);
     }
 
     
