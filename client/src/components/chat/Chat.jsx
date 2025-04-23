@@ -14,6 +14,7 @@ function Chat() {
 
   useEffect(() => {
     setmessagelist(messageData);
+    
   }, [messageData]);
 
   console.log(messageData);

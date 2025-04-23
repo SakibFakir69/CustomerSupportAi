@@ -89,7 +89,7 @@ function Navbar() {
 
             </div>) :
             (<div>
-              <button className="btn btn-active">Sign in </button>
+              <Link to={'/authentication/signin'} className="btn btn-active">Sign in </Link>
 
             </div>)
           }

@@ -109,7 +109,7 @@ function SignUp() {
           </div>
 
           <div className="flex justify-center">
-            <p>You have already account <Link className="text-green-400">Sign in</Link> </p>
+            <p >You have already account <Link to={'/authentication/signin'} className="text-green-400">Sign in</Link> </p>
           </div>
 
          </section>
