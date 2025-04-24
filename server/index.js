@@ -21,7 +21,10 @@ const app = express();
 
 // mideleware
 
-app.use(cors());
+app.use(cors({
+    origin: ['https://chat-mocha-alpha.vercel.app', 'http://localhost:5173'],
+}));
+
 app.use(express.json())
 
 // take user message than reply
@@ -66,7 +69,47 @@ const Ai = async (msg) => {
 //  {ai : cleanreply , }
 // {me:msg}
 
-app.post('/post', async (req, res) => {
+
+// jwt
+// JWT Verify Middleware
+const verifyJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+        return res.status(401).send({ message: 'Unauthorized: No token provided' });
+    }
+
+    const token = authHeader.split(' ')[1]; // Expecting format: "Bearer token"
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).send({ message: 'Forbidden: Invalid token' });
+        }
+        req.user = decoded; // Attach user info to request
+        next();
+    });
+};
+
+// Backend: Express route for login
+app.post('/login', async (req, res) => {
+
+    const { email } = req.body;
+    console.log(email);
+
+    // Here you can verify and generate a JWT if needed
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    console.log(token);
+
+    res.json( {token} );
+
+});
+
+
+
+
+app.post('/post',verifyJWT, async (req, res) => {
+    const email = req.body.email;
+    console.log(email);
 
     
 
@@ -81,13 +124,15 @@ app.post('/post', async (req, res) => {
         {
             message: promt,
             sender: "User",
-            timestamp: new Date()
+            timestamp: new Date(),
+            email:email,
         },
         {
             message: cleanReply,
             sender: "Ai",
             // here face problem
-            timestamp: new Date()
+            timestamp: new Date(),
+            email:email,
         }
     ])
 
