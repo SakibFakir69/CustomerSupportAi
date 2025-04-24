@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Banner() {
   return (
-    <div className=" w-full relative">
+    <div className=" w-full relative lg:py-0  py-10">
 
       {/* <div className="absolute flex justify-end border  right-0">
         <img

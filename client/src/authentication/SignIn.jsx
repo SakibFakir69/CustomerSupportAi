@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 import { ToastContainer, toast } from 'react-toastify';
 function SignIn() {
 
-  const { signUp, signUpWithGoogle ,setloading} = UseAuth();
+  const { signUp,setloading,signIniWithEmailAndPassword,signInWithGoole } = UseAuth();
 
   const goHome = useNavigate();
 
@@ -25,10 +25,36 @@ function SignIn() {
       console.log(data);
 
       setloading(true);
-  
+
+      signIniWithEmailAndPassword(email,password)
+      .then((res)=>{
+        setloading(false);
+        toast.success("Successfully login")
+        goHome("/");
+
+      })
+      .catch((error)=>{
+        toast.error("Login falied");
+        
+      })
      
   
   
+    }
+
+    const handleGoogle = ()=>{
+      setloading(true);
+
+      signInWithGoole()
+      .then((res)=>{
+        toast.success("Successfully login")
+        goHome('/')
+        setloading(false);
+      })
+      .catch((error)=>{
+        toast.error("Falied");
+        console.log(error.message); 
+      })
     }
 
 
@@ -79,6 +105,7 @@ function SignIn() {
 
               <div className="flex justify-center">
                 <button
+                onClick={handleGoogle}
                   className="btn  flex justify-center items-center"
              
                 >
@@ -89,7 +116,7 @@ function SignIn() {
               <div className="flex justify-center">
                 <p>
                   You have no  account{" "}
-                  <Link to={'/authentication/signup'} className="text-green-400">Sign in</Link>{" "}
+                  <Link to={'/authentication/signup'} className="text-green-400">Sign up</Link>{" "}
                 </p>
               </div>
             </section>

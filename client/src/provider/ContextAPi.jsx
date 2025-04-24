@@ -5,10 +5,13 @@ import React, { Children, useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { Auth } from '../firebase/config';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 export const ContextApi = createContext();
 
 function ContextAPi({children}) {
+
+
 
     const [ loading , setloading ]= useState(true);
     const [ user , setuser ] = useState(null);
@@ -38,12 +41,13 @@ function ContextAPi({children}) {
 
     const signIniWithEmailAndPassword = (email,password)=>{
 
-        return signInWithEmailAndPassword(auth,email,password);
+        return signInWithEmailAndPassword(Auth,email,password);
     }
     // sign with google 
+    const Provider = new GoogleAuthProvider();
     const signInWithGoole = ()=>{
 
-        return signInWithPopup(auth);
+        return signInWithPopup(Auth,Provider);
     }
 
     
@@ -51,7 +55,8 @@ function ContextAPi({children}) {
 
 
     const auth = {
-        loading,signUp ,signUpWithGoogle ,setloading,user,signOutHandel,signIniWithEmailAndPassword ,signInWithGoole
+        loading,signUp ,signUpWithGoogle ,setloading,user,signOutHandel,signIniWithEmailAndPassword ,signInWithGoole,
+   
     }
 
 
