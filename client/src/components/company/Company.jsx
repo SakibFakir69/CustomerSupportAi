@@ -26,10 +26,13 @@ function Company() {
             </div>
 
             <div className='flex justify-center mt-10'>
-                <h2>Why use this type services</h2>
-                <p>Minimize their human worker</p>
-                <p>24/7 support</p>
-                <p>Mutipile Customer at a time</p>
+            <div className="flex flex-col items-center mt-10 text-center">
+    <h2 className="text-2xl font-bold mb-4">Why Use This Type of Service?</h2>
+    <p className="mb-2">🔹 Minimize Human Effort - AI reduces the need for human workers, improving efficiency.</p>
+    <p className="mb-2">🔹 24/7 Support - Get help anytime, without waiting for office hours.</p>
+    <p className="mb-2">🔹 Handle Multiple Customers at Once - AI can assist many users simultaneously, no wait time.</p>
+</div>
+
             </div>
 
         </section>

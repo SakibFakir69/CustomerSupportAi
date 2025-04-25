@@ -59,9 +59,12 @@ function Blog() {
                     <p className='mt-4'>No need to wait on hold or talk to a real agent. AI replies instantly.</p>
 
                 </motion.div>
+
                 <motion.div 
 
                 initial={{visibility:"hidden"}}
+                animate={{visibility:"visible"}}
+                transition={{duration:0.3, delay:0.2}}
                 
                 className='border h-24 border-stone-800/60 p-3'>
                     <h2 className='text-2xl font-semibold'>🗣️ Bangla + English Support</h2>
@@ -72,8 +75,9 @@ function Blog() {
 
                 <motion.div 
                 initial={{y:10,scale:0.4}}
+                animate={{y:0, scale:1.0}}
 
-                whileInView={{y:0,scale:1.0}}
+              
                 transition={{duration:0.5, delay:0.4, ease:"easeInOut"}}
 
 

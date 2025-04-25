@@ -82,7 +82,7 @@ function Chat() {
   };
 
   if (isLoading) {
-    return <div className="lg:text-6xl font-semibold text-white text-center py-32 md:text-2xl bg-transparent">Loading initial messages...</div>;
+    return <div className="lg:text-6xl font-semibold text-white text-center py-32 md:text-2xl bg-transparent h-screen">Loading initial messages...</div>;
   }
 
   return (
