@@ -24,11 +24,10 @@ function SignIn() {
       const { email , password }  = data;
       console.log(data);
 
-      setloading(true);
 
       signIniWithEmailAndPassword(email,password)
       .then((res)=>{
-        setloading(false);
+   
         toast.success("Successfully login")
         goHome("/");
 
@@ -43,13 +42,13 @@ function SignIn() {
     }
 
     const handleGoogle = ()=>{
-      setloading(true);
+
 
       signInWithGoole()
       .then((res)=>{
         toast.success("Successfully login")
         goHome('/')
-        setloading(false);
+
       })
       .catch((error)=>{
         toast.error("Falied");

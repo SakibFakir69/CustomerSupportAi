@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Banner() {
+  
   return (
     <div className=" w-full relative lg:py-0  py-10">
 
@@ -15,7 +16,7 @@ function Banner() {
         <div className="absolute flex justify-end right-0 top-0">
         <img
           src="Elements.png"
-          className="max-w-full lg:max-h-[550px] lg:mt-10 md:max-h-[300px] sm:max-h-[200px] md:mt-16 mt-48"
+          className="max-w-full lg:max-h-[550px] lg:mt-10 md:max-h-[300px] sm:max-h-[200px] md:mt-16 mt-80 "
         />
       </div>
 
@@ -25,7 +26,7 @@ function Banner() {
 
             <div className="  ">
 
-              <p className="p-0.5 w-72 flex  justify-center gap-4 items-center bg-black rounded-full border  border-teal-400/40 ">
+              <p className="p-0.5 w-72 flex  justify-center gap-4 items-center bg-black rounded-full border  border-teal-400/20 ">
 
                 <span className="border p-1 rounded-2xl bg-white text-black font-semibold ">New</span>Latest integration just
                 arrived
@@ -41,7 +42,7 @@ function Banner() {
             </p>
 
             <div>
-              <Link to={'/chat'} className="  px-10 py-2.5 hover:bg-teal-400/20 rounded font-semibold bg-teal-200/20 cursor-pointer ">
+              <Link to={'/chat'} className="z-50  px-10 py-2.5 hover:bg-teal-400/20 rounded font-semibold bg-teal-200/20 cursor-pointer ">
                 Get Started
               </Link>
             </div>
@@ -49,7 +50,7 @@ function Banner() {
           </div>
 
           <section>
-            <div className="">
+            <div className=" lg:mt-2 md:mt-10 mt-20">
               {/* img */}
 
               <div className=" flex justify-center ">

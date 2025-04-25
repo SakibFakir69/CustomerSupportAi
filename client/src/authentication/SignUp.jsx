@@ -20,13 +20,12 @@ function SignUp() {
 
   const onSubmit= (data) =>{
     const {name, email , password }  = data;
-    setloading(true);
 
     signUp(email,password)
     .then((res)=>{
       console.log(res.data);
       toast.success("Successfully Sign up")
-      setloading(false);
+
       goHome('/');
     }).catch(err=>{
       console.log(err);
@@ -38,14 +37,14 @@ function SignUp() {
 
   const handelGoogle = (event)=>{
     event.preventDefault();
-    setloading(true);
+
 
     signUpWithGoogle()
     .then((res)=>{
       console.log(res.data);
       toast.success("Successfully Sign up")
       goHome('/')
-      setloading(false);
+
     })
     .catch((err)=>{
       console.log(err);

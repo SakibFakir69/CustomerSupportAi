@@ -4,16 +4,21 @@ import React from 'react'
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosPublic from './useAxiosPublic'
-
+import useAxiosSecure from './useAxiosSecure';
+import UseAuth from './UseAuth';
 function UseMessage() {
 
+    const { user } = UseAuth();
 
-    const axiosPublic = useAxiosPublic();
+
+
+
+    const axiosSecure = useAxiosSecure();
 
     const {refetch,isLoading,data:messageData=[]} = useQuery({
-        queryKey:['chat'],
+        queryKey:['chat',user?.email],
         queryFn:  async()=>{
-            const res =await axiosPublic.get('/message');
+            const res =await axios.get(`https://chat-mocha-alpha.vercel.app/message/${user?.email}`);
             return res.data; 
 
         }

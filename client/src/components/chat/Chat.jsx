@@ -4,26 +4,45 @@ import ReactMarkdown from "react-markdown";
 import UseMessage from "../../hooks/UseMessage";
 import Markdown from "react-markdown";
 import { useMutation } from "@tanstack/react-query";
-import { data } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import UseAuth from "../../hooks/UseAuth";
+import { Navigate, useNavigate } from "react-router-dom";
 function Chat() {
+  const { user, setloading,signOutHandel,signIniWithEmailAndPassword ,signInWithGoole } = UseAuth();
   const [messagelist, setmessagelist] = useState([]);
+  const router = useNavigate();
+
+
+
+
+  if(!user?.email)
+  {
+    console.log("out");
+    router('/authentication/signup')
+
+  }
+  
 
   const inutRef = useRef();
   const [typeing, settypeing] = useState(null);
   const { refetch, isLoading, messageData } = UseMessage();
+  console.log(messageData);
 
   useEffect(() => {
-    setmessagelist(messageData);
+
+    setmessagelist(messageData );
     
   }, [messageData]);
 
   console.log(messageData);
+  const axiosSecure = useAxiosPublic();
 
   const mutation = useMutation(
     async (promt) => {
-      const response = await axios.post(
+      const response = await axiosSecure.post(
         "https://chat-mocha-alpha.vercel.app/post",
-        { promt }
+        { promt , email:user?.email }
         // send email
       );
       return response.data;
@@ -35,9 +54,12 @@ function Chat() {
       onSuccess: (data) => {
         settypeing(false);
         const ai = data.reply;
-
+        console.log(data);
+        console.log(ai);
         setmessagelist((prev) => [...prev, { sender: "Ai", message: ai }]);
-        inutRef.current.value = " ";
+
+        inutRef.current.value = "";
+     
       },
       onError: (error) => {
         settypeing(false); // Hide typing indicator on error
@@ -49,7 +71,7 @@ function Chat() {
     e.preventDefault();
     const promt = inutRef.current?.value;
 
-    if (!promt) {
+    if (!promt  || !user?.email) {
       return;
     }
 
@@ -58,12 +80,13 @@ function Chat() {
 
     mutation.mutate(promt);
   };
+
   if (isLoading) {
-    return <div>Loading initial messages...</div>;
+    return <div className="lg:text-6xl font-semibold text-white text-center py-32 md:text-2xl bg-transparent">Loading initial messages...</div>;
   }
 
   return (
-    <div className="min-h-screen flex justify-center flex-col p-8">
+    <div className="min-h-screen flex justify-center flex-col p-8" >
      
 
 
@@ -73,17 +96,9 @@ function Chat() {
           <div key={key} className="mb-4">
             {data.sender === "Ai" ? (
               <div className="text-left">
-                {/* -1 or +1 */}
-                {/* 55 56 () */}
-
-                {messagelist.length-messageData.length===1 ? (
-                ""
-                 
-                ) : (
-                  <div className=" bg-stone-950 text-white opacity-95  p-2 rounded-md inline-block text-sm">
+                 <div className=" bg-stone-950 text-white opacity-95  p-2 rounded-md inline-block text-sm">
                   <Markdown>{String(data.message)}</Markdown>
                 </div>
-                )}
               </div>
             ) : (
               <div className="text-right">

@@ -66,54 +66,17 @@ const Ai = async (msg) => {
 
 }
 
-//  {ai : cleanreply , }
-// {me:msg}
-
-
-// jwt
-// JWT Verify Middleware
-const verifyJWT = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader) {
-        return res.status(401).send({ message: 'Unauthorized: No token provided' });
-    }
-
-    const token = authHeader.split(' ')[1]; // Expecting format: "Bearer token"
-
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(403).send({ message: 'Forbidden: Invalid token' });
-        }
-        req.user = decoded; // Attach user info to request
-        next();
-    });
-};
-
-// Backend: Express route for login
-app.post('/login', async (req, res) => {
-
-    const { email } = req.body;
-    console.log(email);
-
-    // Here you can verify and generate a JWT if needed
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '7d' });
-    console.log(token);
-
-    res.json( {token} );
-
-});
 
 
 
 
-app.post('/post',verifyJWT, async (req, res) => {
-    const email = req.body.email;
-    console.log(email);
+
+app.post('/post', async (req, res) => {
+
 
     
 
-    const { promt } = req.body;
+    const { promt , email} = req.body;
     console.log(promt);
     const reply = await Ai(promt);
     // return reply here
@@ -126,6 +89,7 @@ app.post('/post',verifyJWT, async (req, res) => {
             sender: "User",
             timestamp: new Date(),
             email:email,
+ 
         },
         {
             message: cleanReply,
@@ -133,6 +97,7 @@ app.post('/post',verifyJWT, async (req, res) => {
             // here face problem
             timestamp: new Date(),
             email:email,
+
         }
     ])
 
@@ -159,9 +124,14 @@ async function run() {
 
         messageCollection = chatDB.collection("message");
 
-        app.get('/message',async(req,res)=>{
+        app.get('/message/:email',async(req,res)=>{
 
-            const data = await messageCollection.find().toArray();
+            const email = req.params.email;
+
+    
+         
+
+            const data = await messageCollection.find({email:email}).toArray();
             res.send(data);
         })
 
@@ -178,7 +148,7 @@ async function run() {
 
     }
 }
-run().catch(console.dir);
+run().catch(console.log);
 
 
 

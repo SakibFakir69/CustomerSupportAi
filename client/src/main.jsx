@@ -17,6 +17,8 @@ import ContextAPi from './provider/ContextAPi.jsx'
 import AuthenticationLayoutes from './authentication/AuthenticationLayoutes.jsx'
 import SignUp from './authentication/SignUp.jsx'
 import SignIn from './authentication/SignIn.jsx'
+import PrivateRoute from './private/PrivateRoute.jsx'
+import Services from './components/services/Services.jsx'
 // add ai based customer support
 // messaging
 // live location track
@@ -34,7 +36,11 @@ const route = createBrowserRouter([
       },
       {
         path:'/chat',
-        element: <Chat/>
+        element:<PrivateRoute><Chat/></PrivateRoute>
+      },
+      {
+        path:'/services',
+        element: <Services/>
       }
      
     ]

@@ -1,20 +1,22 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import UseAuth from "../hooks/UseAuth";
 import {ToastContainer,toast} from "react-toastify"
 
 function Navbar() {
   const { user, setloading,signOutHandel,signIniWithEmailAndPassword ,signInWithGoole } = UseAuth();
+  const location = useLocation();
+  const path = location.pathname;
+  console.log(path);
 
 
   const logOut = ()=>{
 
-    setloading(false);
-    
+
 
     signOutHandel()
     .then((res)=>{
-      setloading(true);
+
       toast.success("Successfully Log out")
 
     }).catch(error=>{
@@ -35,7 +37,7 @@ function Navbar() {
         <NavLink to={"/chat"}>Chat</NavLink>
       </li>
       <li>
-        <a>Service</a>
+        <NavLink to={'/services'}>Services</NavLink>
       </li>
       <li>
         <a>Blog</a>
@@ -52,7 +54,7 @@ function Navbar() {
       <div className="navbar  shadow-sm w-full border border-teal-400/20 z-50 fixed backdrop-blur-3xl bg-transparent">
         <div className="navbar-start  ">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
