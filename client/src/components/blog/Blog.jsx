@@ -62,8 +62,8 @@ function Blog() {
 
                 <motion.div 
 
-                initial={{visibility:"hidden"}}
-                animate={{visibility:"visible"}}
+                initial={{scale:0}}
+                animate={{visibility:"visible",scale:1}}
                 transition={{duration:0.3, delay:0.2}}
                 
                 className='border h-24 border-stone-800/60 p-3'>
