@@ -19,6 +19,7 @@ import SignUp from './authentication/SignUp.jsx'
 import SignIn from './authentication/SignIn.jsx'
 import PrivateRoute from './private/PrivateRoute.jsx'
 import Services from './components/services/Services.jsx'
+import Blog from './components/blog/Blog.jsx'
 // add ai based customer support
 // messaging
 // live location track
@@ -41,6 +42,10 @@ const route = createBrowserRouter([
       {
         path:'/services',
         element: <Services/>
+      },
+      {
+        path:'/blog',
+        element: <Blog/>
       }
      
     ]
