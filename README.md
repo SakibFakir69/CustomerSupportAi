@@ -9,7 +9,7 @@ An intelligent AI-powered customer support system designed for **bKash**, Bangla
 Here's a preview of the AI-powered chat interface that mimics bKash customer support:
 
 ![AI Chat UI Preview](https://i.ibb.co.com/NdMqvWnz/Screenshot-2025-04-25-234215.png)
-(https://ibb.co.com/zTzgMPHw)
+
 
 
 ## 🌟 Features
