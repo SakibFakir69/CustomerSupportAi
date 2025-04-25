@@ -29,6 +29,7 @@ function Chat() {
   const { refetch, isLoading, messageData } = UseMessage();
   console.log(messageData);
 
+
   useEffect(() => {
 
     setmessagelist(messageData );
@@ -39,6 +40,7 @@ function Chat() {
   const axiosSecure = useAxiosPublic();
 
   const mutation = useMutation(
+    
     async (promt) => {
       const response = await axiosSecure.post(
         "/post",
