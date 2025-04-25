@@ -41,7 +41,7 @@ function Chat() {
   const mutation = useMutation(
     async (promt) => {
       const response = await axiosSecure.post(
-        "https://chat-mocha-alpha.vercel.app/post",
+        "/post",
         { promt , email:user?.email }
         // send email
       );
